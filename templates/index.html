@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Tarea</title>
+    <!--<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">-->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h2 class="text-center">App Tarea</h2>
+                        <p>Vamos a guardar las tareas que necesitas realizar</p>
+                        <form class="form" action="/add-tarea" method="POST">
+                            <div class="mb-3">
+                              <label class="form-label">Titulo</label>
+                              <input type="text" name="title" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label">Descripcion</label>
+                              <textarea class="form-control" name="description" cols="30" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                          </form>
+                    </div>
+                    <div class="col-lg-8">
+                        {% for tarea in tareas %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-9">
+                                        <strong class="text-uppercase">{{ tarea.1 }}</strong>
+                                        <p>{{tarea.2}}</p>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <a href="/edit-tarea/{{tarea.0}}" class="btn btn-primary btn-sm">Editar</a>
+                                        <a href="/delete-tarea/{{tarea.0}}" class="btn btn-danger btn-sm">Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
